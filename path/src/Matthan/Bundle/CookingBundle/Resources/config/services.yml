@@ -1,0 +1,7 @@
+parameters:
+#    matthan_cooking.example.class: Matthan\Bundle\CookingBundle\Example
+
+services:
+#    matthan_cooking.example:
+#        class: %matthan_cooking.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

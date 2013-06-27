@@ -1,0 +1,4 @@
+matthan_cooking:
+    resource: "@MatthanCookingBundle/Resources/config/routing.yml"
+    prefix:   /
+

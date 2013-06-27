@@ -1,0 +1,3 @@
+matthan_cooking_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: MatthanCookingBundle:Default:index }
