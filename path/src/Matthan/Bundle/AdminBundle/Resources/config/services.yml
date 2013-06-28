@@ -1,0 +1,7 @@
+parameters:
+#    matthan_admin.example.class: Matthan\Bundle\AdminBundle\Example
+
+services:
+#    matthan_admin.example:
+#        class: %matthan_admin.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
