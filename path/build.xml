@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="MatthanFridgeFu" basedir="." default="test">
+
+    <!-- Full Build Options -->
+    <target name="test" description="Run all of the unit tests" depends="vendors,report-setup,phpunit,phpcs" />
+    <target name="update"
+            description="Run this after pulling new code to make sure your system is up to date"
+            depends="vendors,install-assets">
+    </target>
+    <target name="production-refresh"
+            description="Prepares the project for production mode">
+        <exec command="app/console cache:clear --env=prod" passthru="true" />
+        <exec command="app/console assets:install --symlink --env=prod web/" passthru="true" />
+        <exec command="app/console assetic:dump --env=prod" passthru="true" />
+    </target>
+
+    <!-- Coding standards / Tests -->
+    <target name="phpcs" description="PHP Code_Sniffer">
+        <exec command="phpcs --encoding=UTF-8 --report-xml=reports/phpcodesniffer.xml --report-full --report-width=180 src/" passthru="true" checkreturn="true" />
+    </target>
+    <target name="phpunit" description="Unit tests">
+        <exec command="phpunit --coverage-html=reports/phpunit -c app" passthru="true" />
+    </target>
+
+    <!-- Style/Asset functions -->
+    <target name="install-assets" description="Installs asset files and dumps assetic">
+        <exec command="app/console assets:install --symlink web/" passthru="true" />
+        <exec command="app/console assetic:dump" passthru="true" />
+    </target>
+
+    <!-- Dependencies -->
+    <target name="vendors" description="Install the correct version of vendor files">
+        <exec command="composer install" passthru="true" checkreturn="true"/>
+    </target>
+
+    <!-- Environment Setup -->
+    <target name="report-setup" description="Emptying the reports directories">
+        <exec command="rm -rf reports" />
+        <exec command="mkdir reports" />
+    </target>
+    <target name="permissions" description="Setup the correct permissions">
+        <exec command="bin/set-permissions" checkreturn="true" />
+    </target>
+
+</project>
